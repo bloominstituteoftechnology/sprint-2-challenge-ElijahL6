@@ -6,33 +6,102 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
-
+      if (profile.active === true && reason === undefined) { return "confirm status manually" }
+      if (profile.active === true) {
+        profile.active = false
+        profile.reason = reason
+        return profile
+      }
+      if (profile.active === false) {
+        profile.active = true;
+        delete profile.reason
+        return profile
+      }
     }
+
 
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
-
+      if (
+        (x < 1 || x > 3) || (y < 1 || y > 3)
+      ) return "invalid coordinates"
+      if (grid[y - 1][x - 1] === "🟥") return "🟥 💀"
+      if (grid[y - 1][x - 1] === "🟦") return "🟦 🥳"
     }
 
-    // 👉 CHALLENGE 3
+
+
+    //   // 👉 CHALLENGE 3
     function booleanize(obj) {
+      for (let key in obj) {
+        if (key.length > 9) {
+          return "shorten all prop names to 9 chars or less";
+        }
+        if (obj[key] === null) {
+          delete obj[key];
+        }
 
+        if (obj[key] === 0) { obj[key] = false; }
+        else if (obj[key] === 1) {
+          obj[key] = true;
+        }
+      } return obj;
     }
 
-    // 👉 CHALLENGE 4
+
+    //👉 CHALLENGE 4
+
     function scrub(text, forbidden) {
+      let words = text.split(' ');
+      
+      // Iterate through each word 
+      for (let i = 0; i < words.length; i++) {
+        //Check if the current word is in the forbidden array 
+        
+        if (forbidden.includes(words[i]))  {
+          let string =''
+          for ( let j = 0; j < words[i].length; j++) {
+             
 
+              string = string + 'x'
+          }
+          // Replace the forbidden word with astericks of same length 
+           console.log (string)
+            words[i] = string
+        }
+      }
+      //Join the modified words back into a string 
+      return words.join(' ');
     }
 
-    // 👉 CHALLENGE 5 (bonus, NOT graded)
-    function normalizePhoneNumber(num) {
 
-    }
+    //   // 👉 CHALLENGE 5 (bonus, NOT graded)
+      function normalizePhoneNumber(num) {}
+    //     if (num.length !==10) {
+    //       return 'Invalid number'; 
+    //     }
+    //     //Do something if the first element of count is 4 or 2 } 
+    //     //Rest of your code goes here 
+    //     //Assuming you want to format the phone number like (###)-####-####
+    //     const formattedNum = `(${validNum.slice(0,3)}) ${validNum.slice (3,6)}-${validNum.slice (6)}`; 
+    //     return formattedNum; } 
+    //     let result = normalizePhoneNumber("1111111111");
+    //     console.log(result); //"(111) 111-1111"
 
-    // 👉 CHALLENGE 6 (bonus, NOT graded)
-    function diceRolls() {
+    //   // 👉 CHALLENGE 6 (bonus, NOT graded)
+    //   function diceRolls() {let totalRolls = 0;
+    //     let consecutiveSixes = 0;
+    //     while(true) {
+    //       const roll = Math.floor(Math.random ()*6) + 1; totalRolls ++ ; 
+    //       if (roll === 6) {
+    //         consecutiveSixes ++; 
+    //         if (consecutiveSixes === 3) {
+    //           break;}} else {
+    //             consecutiveSixes = 0;}} 
+    //             return totalRolls; }
+    //             let result = diceRolls (); 
+    //             console.log (result);
 
-    }
 
     // 🧪 DO NOT make any changes below this line ===================
     globalThis.challengeVersion = 1
@@ -40,7 +109,7 @@
     globalThis.mineSweeper = mineSweeper
     globalThis.booleanize = booleanize
     globalThis.scrub = scrub
-  </script>
+  </script>rbidden.includes
   <style>
     .widget {
       padding: 0 0 0.5rem 0.65rem;
